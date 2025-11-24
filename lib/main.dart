@@ -11,7 +11,12 @@ class BudgetTrackerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(body: Center(child: Text('بسم الله توكلت علي الله'))),
+      home: Scaffold(
+        backgroundColor: Color(0xff1E1E1E),
+        // body: Center(
+        //   child: Image.asset('assets/images/Logo-removebg-preview.png'),
+        // ),
+      ),
     );
   }
 }

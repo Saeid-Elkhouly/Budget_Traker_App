@@ -1,4 +1,6 @@
+import 'package:budget_tracker_app/features/login-feature/presentation/views/login_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   runApp(const BudgetTrackerApp());
@@ -9,9 +11,11 @@ class BudgetTrackerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(body: Center(child: Text('بسم الله توكلت علي الله'))),
+    return ScreenUtilInit(
+      designSize: const Size(390, 844),
+      minTextAdapt: true,
+
+      child: MaterialApp(debugShowCheckedModeBanner: false, home: LoginView()),
     );
   }
 }

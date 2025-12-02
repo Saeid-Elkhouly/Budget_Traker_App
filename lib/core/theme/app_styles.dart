@@ -9,6 +9,22 @@ class AppStyles {
   );
   static TextStyle font12BoldWhite = GoogleFonts.poppins(
     fontSize: 12,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
+  static TextStyle font12w500grey = GoogleFonts.poppins(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    color: Colors.grey,
+  );
+  static TextStyle font12w500white = GoogleFonts.poppins(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
+  );
+
+  static TextStyle font12w400White = GoogleFonts.poppins(
+    fontSize: 12,
     fontWeight: FontWeight.w400,
     color: Colors.white,
   );
@@ -16,6 +32,16 @@ class AppStyles {
     fontSize: 14,
     fontWeight: FontWeight.bold,
     color: Color(0xff663b60),
+  );
+  static TextStyle font14Boldamber = GoogleFonts.poppins(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: Colors.amber
+  );
+  static TextStyle font14Boldwhite = GoogleFonts.poppins(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
   );
 
   static TextStyle font16BoldWhite = GoogleFonts.poppins(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glossy/glossy.dart';
 
 class CustomGlossyContainer extends StatelessWidget {
@@ -15,8 +16,8 @@ class CustomGlossyContainer extends StatelessWidget {
       ),
       strengthX: 0.5,
       strengthY: 0.5,
-      width: 370,
-      height: 450,
+      width: 370.w,
+      height: 450.h,
       borderRadius: BorderRadius.circular(12),
       child: child,
     );

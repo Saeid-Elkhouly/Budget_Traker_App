@@ -1,24 +1,41 @@
-import 'package:budget_tracker_app/features/login-feature/presentation/views/login_view.dart';
-import 'package:budget_tracker_app/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() async {
-  runApp(const BudgetTrackerApp());
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-}
+// Import your app modules
+import 'package:budget_tracker_app/budget_tracker_app.dart';
+import 'package:budget_tracker_app/core/routing/routing.dart';
+import 'package:budget_tracker_app/firebase_options.dart';
 
-class BudgetTrackerApp extends StatelessWidget {
-  const BudgetTrackerApp({super.key});
+Future<void> main() async {
+  // Ensures Flutter engine is initialized before Firebase
+  WidgetsFlutterBinding.ensureInitialized();
 
-  @override
-  Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(390, 844),
-      minTextAdapt: true,
+  try {
+    // Initialize Firebase with platform-specific options
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
 
-      child: MaterialApp(debugShowCheckedModeBanner: false, home: LoginView()),
+    // Run the main app
+    runApp(BudgetTrackerApp(routing: Routing.instance));
+  } catch (e, stackTrace) {
+    // Log initialization errors
+    debugPrint('Firebase initialization failed: $e');
+    debugPrintStack(stackTrace: stackTrace);
+
+    // Optionally, show a fallback error UI
+    runApp(
+      MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: Text(
+              'Something went wrong while starting the app.',
+              style: TextStyle(fontSize: 16, color: Colors.red),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

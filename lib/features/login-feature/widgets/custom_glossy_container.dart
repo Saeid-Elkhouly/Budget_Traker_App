@@ -3,8 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glossy/glossy.dart';
 
 class CustomGlossyContainer extends StatelessWidget {
-  const CustomGlossyContainer({super.key, this.child});
+  const CustomGlossyContainer({super.key, this.child, required this.height});
   final Widget? child;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class CustomGlossyContainer extends StatelessWidget {
       strengthX: 0.5,
       strengthY: 0.5,
       width: 370.w,
-      height: 450.h,
+      height: height,
       borderRadius: BorderRadius.circular(12),
       child: child,
     );

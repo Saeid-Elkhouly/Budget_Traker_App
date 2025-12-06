@@ -46,7 +46,7 @@ class CustomTextField extends StatelessWidget {
           borderSide: BorderSide(color: Colors.red, width: 2),
         ),
 
-        hintText: 'Enter your password',
+        hintText: hintText,
         hintStyle: TextStyle(color: Colors.white70, fontSize: 15.sp),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),

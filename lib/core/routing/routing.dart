@@ -4,6 +4,9 @@ import 'package:budget_tracker_app/features/login-feature/data/repos/login_repo_
 import 'package:budget_tracker_app/features/login-feature/presentation/cubits/login_cubit/login_cubit.dart';
 import 'package:budget_tracker_app/features/login-feature/presentation/home_view.dart';
 import 'package:budget_tracker_app/features/login-feature/presentation/views/login_view.dart';
+import 'package:budget_tracker_app/features/login-feature/sign_up_core/data/repos/sign_up_repo_impl.dart';
+import 'package:budget_tracker_app/features/login-feature/sign_up_core/presentation/cubit/sign_up_cubit_cubit.dart';
+import 'package:budget_tracker_app/features/login-feature/sign_up_core/presentation/views/sign_up_view.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +25,14 @@ class Routing {
               LoginRepoImpl(firebaseHelper: FirebaseHelper.instance),
             ),
             child: const LoginView(),
+          ),
+        );
+      case Routes.signUpView:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (context) =>
+                SignUpCubit(SignUpRepoImpl(FirebaseHelper.instance)),
+            child: const SignUpView(),
           ),
         );
       case Routes.homeView:

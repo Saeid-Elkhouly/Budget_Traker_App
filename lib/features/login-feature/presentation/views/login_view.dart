@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:budget_tracker_app/core/routing/routes.dart';
 
 import 'package:budget_tracker_app/core/theme/app_styles.dart';
@@ -16,19 +14,25 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bottomInset = MediaQuery.of(context).viewInsets.bottom;
-
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
-        if (state is LoginSuccess) {
+        if (state is LoginLoading) {
+          showDialog(
+            context: context,
+            builder: (context) {
+              return Center(child: CircularProgressIndicator());
+            },
+          );
+        } else if (state is LoginSuccess) {
+          Navigator.pop(context);
           // Navigate to Home
           Navigator.pushReplacementNamed(context, Routes.homeView);
         } else if (state is LoginFailure) {
+          Navigator.pop(context);
           // Show error message
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
-          log('Login Failure: ${state.errorMessage}');
         }
       },
       child: Scaffold(
@@ -43,11 +47,12 @@ class LoginView extends StatelessWidget {
               ),
             ),
             SingleChildScrollView(
+              reverse: true,
               physics: BouncingScrollPhysics(),
-              padding: EdgeInsets.only(bottom: bottomInset),
+              //  padding: EdgeInsets.only(bottom: bottomInset),
               child: Column(
                 children: [
-                  SizedBox(height: 95.h),
+                  SizedBox(height: 120.h),
                   const HeaderLogin(),
                   SizedBox(height: 20.h),
                   Center(child: LoginViewBody()),
@@ -68,8 +73,21 @@ class LoginView extends StatelessWidget {
                         'Don\'t have an account?',
                         style: AppStyles.font12w500white,
                       ),
-                      SizedBox(width: 6.w),
-                      Text('Sign Up', style: AppStyles.font14Boldamber),
+
+                      TextButton(
+                        style: ButtonStyle(
+                          padding: WidgetStateProperty.all<EdgeInsets>(
+                            EdgeInsets.all(2),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, Routes.signUpView);
+                        },
+                        child: Text(
+                          'Sign Up',
+                          style: AppStyles.font14Boldamber,
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(height: 50.h),

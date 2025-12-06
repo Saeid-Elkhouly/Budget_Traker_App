@@ -1,8 +1,8 @@
 import 'package:budget_tracker_app/core/theme/app_styles.dart';
 import 'package:budget_tracker_app/features/login-feature/presentation/cubits/login_cubit/login_cubit.dart';
-import 'package:budget_tracker_app/features/login-feature/presentation/views/widgets/custom_button.dart';
-import 'package:budget_tracker_app/features/login-feature/presentation/views/widgets/custom_glossy_container.dart';
-import 'package:budget_tracker_app/features/login-feature/presentation/views/widgets/custom_text_field.dart';
+import 'package:budget_tracker_app/features/login-feature/widgets/custom_button.dart';
+import 'package:budget_tracker_app/features/login-feature/widgets/custom_glossy_container.dart';
+import 'package:budget_tracker_app/features/login-feature/widgets/custom_text_field.dart';
 
 import 'package:budget_tracker_app/features/login-feature/presentation/views/widgets/footer_login.dart';
 
@@ -30,6 +30,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       key: formKey,
       child: Center(
         child: CustomGlossyContainer(
+          height: 450.h,
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
             child: Column(
@@ -39,7 +40,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text('Email', style: AppStyles.font18BoldWhite),
+                    Text('Email', style: AppStyles.font16BoldWhite),
                     SizedBox(height: 8.h),
                     CustomTextField(
                       validator: FormBuilderValidators.compose([
@@ -60,21 +61,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text('Password', style: AppStyles.font18BoldWhite),
+                    Text('Password', style: AppStyles.font16BoldWhite),
                     SizedBox(height: 8.h),
                     CustomTextField(
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.required(
                           errorText: 'Password is required',
-                        ),
-                        FormBuilderValidators.minLength(
-                          8,
-                          errorText:
-                              'Password must be at least 8 characters long',
-                        ),
-                        FormBuilderValidators.password(
-                          errorText:
-                              'Password must contain uppercase, lowercase, number and special character',
                         ),
                       ]),
                       controller: passwordController,
@@ -104,9 +96,6 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                               .loginUserWithEmailAndPassword(email, password);
                         }
                       },
-                      child: state is LoginLoading
-                          ? CircularProgressIndicator(color: Colors.white)
-                          : Text('Login', style: AppStyles.font16BoldWhite),
                     );
                   },
                 ),
